@@ -1,116 +1,83 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FirstComponent from './components/FirstComponent';
-import CardComponent from './components/CardComponent';
-function App() {
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import CardsPage from './pages/CardsPage';
+import TablesPage from './pages/TablesPage';
+
+// Компонент навигации
+const Navigation = () => {
+  const location = useLocation();
+  
+  const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="container">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img src={logo} className="App-logo me-3" alt="logo" style={{height: '40px'}} />
+          <span className="h4 mb-0">My React App</span>
+        </Link>
+        
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNav"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <Link 
+                className={`nav-link ${isActive('/')}`} 
+                to="/"
+              >
+                Главная
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link 
+                className={`nav-link ${isActive('/cards')}`} 
+                to="/cards"
+              >
+                Карточки
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link 
+                className={`nav-link ${isActive('/tables')}`} 
+                to="/tables"
+              >
+                Таблицы
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+// Основной компонент приложения
+const AppContent = () => {
   return (
     <div className="App d-flex flex-column min-vh-100">
-      {/* Header */}
-      <header className="bg-primary text-white py-3">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col">
-              <img src={logo} className="App-logo me-3" alt="logo" style={{height: '40px'}} />
-              <span className="h4 mb-0">My React App</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Header с навигацией */}
+      <Navigation />
 
       {/* Main Content */}
       <main className="container my-5 flex-grow-1">
-        {/* FirstComponent */}
-        <div className="row mt-5">
-          <div className="col">
-            <FirstComponent />
-          </div>
-        </div>
-
-        {/* Cards Section */}
-        <div className="row mt-5">
-          <div className="col-12">
-            <h2 className="text-center mb-4">Наши карточки</h2>
-          </div>
-        </div>
-        <div className="row g-4">
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 1"
-                description="Изучайте React - современную библиотеку для создания пользовательских интерфейсов. Создавайте интерактивные веб-приложения с компонентной архитектурой."
-                imageUrl="/images/1.jpg"
-                imageAlt="Лягушечка 1"
-              />
-            </div>
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 2"
-                description="Используйте Bootstrap для быстрого создания адаптивных и красивых веб-интерфейсов. Готовая система компонентов и утилит."
-                imageUrl="/images/2.jpg"
-                imageAlt="Лягушечка 2"
-              />
-            </div>
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 3"
-                description="Создавайте современные веб-приложения с использованием лучших практик дизайна. Адаптивность, доступность и производительность."
-                imageUrl="/images/3.jpg"
-                imageAlt="Лягушечка 3"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 1"
-                description="Изучайте React - современную библиотеку для создания пользовательских интерфейсов. Создавайте интерактивные веб-приложения с компонентной архитектурой."
-                imageUrl="/images/1.jpg"
-                imageAlt="Лягушечка 1"
-              />
-            </div>
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 2"
-                description="Используйте Bootstrap для быстрого создания адаптивных и красивых веб-интерфейсов. Готовая система компонентов и утилит."
-                imageUrl="/images/2.jpg"
-                imageAlt="Лягушечка 2"
-              />
-            </div>
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 3"
-                description="Создавайте современные веб-приложения с использованием лучших практик дизайна. Адаптивность, доступность и производительность."
-                imageUrl="/images/3.jpg"
-                imageAlt="Лягушечка 3"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 3"
-                description="Создавайте современные веб-приложения с использованием лучших практик дизайна. Адаптивность, доступность и производительность."
-                imageUrl="/images/3.jpg"
-                imageAlt="Лягушечка 3"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 3"
-                description="Создавайте современные веб-приложения с использованием лучших практик дизайна. Адаптивность, доступность и производительность."
-                imageUrl="/images/3.jpg"
-                imageAlt="Лягушечка 3"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <CardComponent 
-                title="Лягушечка 3"
-                description="Создавайте современные веб-приложения с использованием лучших практик дизайна. Адаптивность, доступность и производительность."
-                imageUrl="/images/3.jpg"
-                imageAlt="Лягушечка 3"
-              />
-            </div>
-        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cards" element={<CardsPage />} />
+          <Route path="/tables" element={<TablesPage />} />
+        </Routes>
       </main>
 
       {/* Footer */}
@@ -124,6 +91,15 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+};
+
+// Главный компонент с Router
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
