@@ -9,7 +9,7 @@ import FirstComponent from './components/FirstComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FirstComponent />
+    <App />
   </React.StrictMode>
 );
 
