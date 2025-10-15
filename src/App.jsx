@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CardsPage from './pages/CardsPage';
 import TablesPage from './pages/TablesPage';
+import UsersPage from './pages/UsersPage';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
               <div className="col-md-6 text-end">
                 <Link to="/" className="text-white text-decoration-none me-3">Главная</Link>
                 <Link to="/cards" className="text-white text-decoration-none me-3">Карточки</Link>
-                <Link to="/tables" className="text-white text-decoration-none">Таблицы</Link>
+                <Link to="/tables" className="text-white text-decoration-none me-3">Таблицы</Link>
+                <Link to="/users" className="text-white text-decoration-none">API пример</Link>
               </div>
             </div>
           </div>
@@ -33,6 +35,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cards" element={<CardsPage />} />
             <Route path="/tables" element={<TablesPage />} />
+            <Route path="/users" element={<UsersPage />} />
           </Routes>
         </main>
 
