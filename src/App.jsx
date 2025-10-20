@@ -6,6 +6,10 @@ import HomePage from './pages/HomePage';
 import CardsPage from './pages/CardsPage';
 import TablesPage from './pages/TablesPage';
 import UsersPage from './pages/UsersPage';
+import LocalApiPage from './pages/LocalApiPage';
+import TopicsPage from './pages/TopicsPage';
+import DescriptionPage from './pages/DescriptionPage';
+import FormsPage from './pages/FormsPage';
 
 function App() {
   return (
@@ -23,7 +27,11 @@ function App() {
                 <Link to="/" className="text-white text-decoration-none me-3">Главная</Link>
                 <Link to="/cards" className="text-white text-decoration-none me-3">Карточки</Link>
                 <Link to="/tables" className="text-white text-decoration-none me-3">Таблицы</Link>
-                <Link to="/users" className="text-white text-decoration-none">API пример</Link>
+                <Link to="/users" className="text-white text-decoration-none me-3">API пример</Link>
+                <Link to="/local" className="text-white text-decoration-none me-3">Локальный API</Link>
+                <Link to="/topics" className="text-white text-decoration-none me-3">Темы</Link>
+                <Link to="/description" className="text-white text-decoration-none me-3">Описание</Link>
+                <Link to="/forms" className="text-white text-decoration-none">Формы</Link>
               </div>
             </div>
           </div>
@@ -36,6 +44,10 @@ function App() {
             <Route path="/cards" element={<CardsPage />} />
             <Route path="/tables" element={<TablesPage />} />
             <Route path="/users" element={<UsersPage />} />
+            <Route path="/local" element={<LocalApiPage />} />
+            <Route path="/topics" element={<TopicsPage />} />
+            <Route path="/description" element={<DescriptionPage />} />
+            <Route path="/forms" element={<FormsPage />} />
           </Routes>
         </main>
 

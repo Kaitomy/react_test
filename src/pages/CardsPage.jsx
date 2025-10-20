@@ -4,11 +4,6 @@ import CardComponent from '../components/CardComponent';
 const CardsPage = () => {
   return (
     <div>
-      <div className="row">
-        <div className="col-12">
-          <h2 className="text-center mb-4">Наши карточки</h2>
-        </div>
-      </div>
       <div className="row g-4">
         <div className="col-md-4">
           <CardComponent 
