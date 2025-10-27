@@ -12,7 +12,7 @@ const LocalApiPage = () => {
   return (
     <div>
       <h2 className="text-center mb-4">Данные из локального API</h2>
-      <div className="row g-3">
+      <div cla000ssName="row g-3">
         {items.map((it) => (
           <div className="col-md-6 col-lg-4" key={it.id}>
             <div className="card h-100">

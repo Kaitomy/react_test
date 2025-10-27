@@ -128,26 +128,6 @@ const FormsPage = () => {
         </div>
       </div>
 
-      <h2 className="mt-4">2. Установка React Hook Form</h2>
-      <div className="row">
-        <div className="col-12">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Команды для установки</h5>
-              <div className="bg-dark text-light p-3 rounded">
-                <code className="text-success">npm install react-hook-form</code>
-              </div>
-              <div className="mt-3">
-                <h6>Или с yarn:</h6>
-                <div className="bg-dark text-light p-3 rounded">
-                  <code className="text-success">yarn add react-hook-form</code>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <h2 className="mt-4">3. React Hook Form - Практический пример</h2>
       <div className="row">
         <div className="col-12">

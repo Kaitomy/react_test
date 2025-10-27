@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "sdfdsfdsfds Иванов",
+    "age": 28,
+    "email": "alexey@example.com",
+    "city": "Москва",
+    "profession": "Frontend Developer",
+    "phone": "+7 (999) 123-45-67",
+    "dateAdded": "2024-01-15"
+  },
+  {
+    "id": 2,
+    "name": "Мария Петрова",
+    "age": 25,
+    "email": "maria@example.com",
+    "city": "Санкт-Петербург",
+    "profession": "UI/UX Designer",
+    "phone": "+7 (888) 234-56-78",
+    "dateAdded": "2024-01-16"
+  },
+  {
+    "id": 3,
+    "name": "Дмитрий Сидоров",
+    "age": 32,
+    "email": "dmitry@example.com",
+    "city": "Новосибирск",
+    "profession": "Backend Developer",
+    "phone": "+7 (777) 345-67-89",
+    "dateAdded": "2024-01-17"
+  }
+]

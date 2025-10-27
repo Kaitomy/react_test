@@ -10,6 +10,14 @@ import LocalApiPage from './pages/LocalApiPage';
 import TopicsPage from './pages/TopicsPage';
 import DescriptionPage from './pages/DescriptionPage';
 import FormsPage from './pages/FormsPage';
+import PeoplePage from './pages/PeoplePage';
+import SimpleFormsPage from './pages/SimpleFormsPage';
+import MapsPage from './pages/MapsPage';
+import FramerMotionPage from './pages/FramerMotionPage';
+import InViewPage from './pages/InViewPage';
+import NestjsPage from './pages/NestjsPage';
+import ProductsPage from './pages/ProductsPage';
+import UsersManagePage from './pages/UsersManagePage';
 
 function App() {
   return (
@@ -19,11 +27,11 @@ function App() {
         <header className="text-white py-3" style={{backgroundColor: 'rgb(0, 0, 0)'}}>
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <img src={logo} className="App-logo me-3" alt="logo" style={{height: '40px'}} />
                 <span className="h4 mb-0">My React App</span>
               </div>
-              <div className="col-md-6 text-end">
+              <div className="col-md-8 text-end">
                 <Link to="/" className="text-white text-decoration-none me-3">Главная</Link>
                 <Link to="/cards" className="text-white text-decoration-none me-3">Карточки</Link>
                 <Link to="/tables" className="text-white text-decoration-none me-3">Таблицы</Link>
@@ -31,7 +39,15 @@ function App() {
                 <Link to="/local" className="text-white text-decoration-none me-3">Локальный API</Link>
                 <Link to="/topics" className="text-white text-decoration-none me-3">Темы</Link>
                 <Link to="/description" className="text-white text-decoration-none me-3">Описание</Link>
-                <Link to="/forms" className="text-white text-decoration-none">Формы</Link>
+                <Link to="/forms" className="text-white text-decoration-none me-3">Формы</Link>
+                <Link to="/people" className="text-white text-decoration-none me-3">Люди</Link>
+                <Link to="/simple-forms" className="text-white text-decoration-none me-3">Простые формы</Link>
+                <Link to="/maps" className="text-white text-decoration-none me-3">Карты</Link>
+                <Link to="/framer-motion" className="text-white text-decoration-none me-3">Framer Motion</Link>
+                <Link to="/inview" className="text-white text-decoration-none me-3">InView</Link>
+                <Link to="/nestjs" className="text-white text-decoration-none me-3">Nest.js</Link>
+                <Link to="/products" className="text-white text-decoration-none me-3">Продукты</Link>
+                <Link to="/users-manage" className="text-white text-decoration-none">Управление пользователями</Link>
               </div>
             </div>
           </div>
@@ -48,6 +64,14 @@ function App() {
             <Route path="/topics" element={<TopicsPage />} />
             <Route path="/description" element={<DescriptionPage />} />
             <Route path="/forms" element={<FormsPage />} />
+            <Route path="/people" element={<PeoplePage />} />
+            <Route path="/simple-forms" element={<SimpleFormsPage />} />
+            <Route path="/maps" element={<MapsPage />} />
+            <Route path="/framer-motion" element={<FramerMotionPage />} />
+            <Route path="/inview" element={<InViewPage />} />
+            <Route path="/nestjs" element={<NestjsPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/users-manage" element={<UsersManagePage />} />
           </Routes>
         </main>
 

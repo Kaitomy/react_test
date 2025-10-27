@@ -1,29 +1,96 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const DescriptionPage = () => {
   const [showModal, setShowModal] = useState(false);
+  
+  // Анимация 1: Fade In + Slide Up для заголовка
+  const titleAnimation = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
+  // Анимация 2: Scale для главной карточки
+  const cardAnimation = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.6, delay: 0.2 }
+    }
+  };
+
+  // Анимация 3: Stagger для навыков
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  // Анимация 4: Rotate на hover для достижений
+  const achievementVariants = {
+    hover: { 
+      rotate: [0, -5, 5, -5, 0],
+      scale: 1.1,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
     <div>
       <div className="row">
         <div className="col-12">
-          <h2 className="text-center mb-5">Описание</h2>
+          {/* Анимация 1: Заголовок с Fade In + Slide Up */}
+          <motion.h2 
+            className="text-center mb-5"
+            variants={titleAnimation}
+            initial="hidden"
+            animate="visible"
+          >
+            Описание
+          </motion.h2>
         </div>
       </div>
 
       <div className="row justify-content-center">
         <div className="col-lg-10">
-          <div className="card shadow-lg border-0" style={{
-            borderRadius: '15px', 
-            overflow: 'hidden'
-          }}>
+          {/* Анимация 2: Scale для главной карточки */}
+          <motion.div 
+            className="card shadow-lg border-0" 
+            style={{
+              borderRadius: '15px', 
+              overflow: 'hidden'
+            }}
+            variants={cardAnimation}
+            initial="hidden"
+            animate="visible"
+          >
             <div className="card-body p-0">
               <div className="row g-0">
+                
                 {/* Фото слева */}
                 <div className="col-md-4">
                   <div className="h-100 d-flex align-items-center justify-content-center" 
                        style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
                     <div className="text-center p-4">
-                      <img 
+                      <motion.img 
                         src="/images/1.jpg" 
                         alt="Фото человека" 
                         className="img-fluid rounded-circle shadow-lg mb-3"
@@ -31,12 +98,11 @@ const DescriptionPage = () => {
                           width: '200px', 
                           height: '200px', 
                           objectFit: 'cover',
-                          transition: 'transform 0.3s ease',
                           cursor: 'pointer'
                         }}
                         onClick={() => setShowModal(true)}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
                       />
                       <h4 className="text-white mb-0">Алексей Иванов</h4>
                       <p className="text-white">Frontend Developer</p>
@@ -66,7 +132,13 @@ const DescriptionPage = () => {
                       </div>
                     </div>
 
-                    <div className="mb-4">
+                    {/* Анимация 3: Stagger для навыков */}
+                    <motion.div 
+                      className="mb-4"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
                       <h4 className="text-success mb-3">
                         <i className="fas fa-code me-2"></i>
                         Технические навыки
@@ -75,35 +147,35 @@ const DescriptionPage = () => {
                         <div className="col-md-6">
                           <h6 className="text-muted">Frontend</h6>
                           <div className="mb-2">
-                            <span className="badge bg-primary me-1">React</span>
-                            <span className="badge bg-primary me-1">JavaScript</span>
-                            <span className="badge bg-primary me-1">TypeScript</span>
+                            <motion.span variants={itemVariants} className="badge bg-primary me-1">React</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-primary me-1">JavaScript</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-primary me-1">TypeScript</motion.span>
                           </div>
                           <div className="mb-2">
-                            <span className="badge bg-info me-1">HTML5</span>
-                            <span className="badge bg-info me-1">CSS3</span>
-                            <span className="badge bg-info me-1">Sass</span>
+                            <motion.span variants={itemVariants} className="badge bg-info me-1">HTML5</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-info me-1">CSS3</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-info me-1">Sass</motion.span>
                           </div>
                           <div className="mb-2">
-                            <span className="badge bg-warning me-1">Bootstrap</span>
-                            <span className="badge bg-warning me-1">Material-UI</span>
+                            <motion.span variants={itemVariants} className="badge bg-warning me-1">Bootstrap</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-warning me-1">Material-UI</motion.span>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <h6 className="text-muted">Backend & Tools</h6>
                           <div className="mb-2">
-                            <span className="badge bg-secondary me-1">Node.js</span>
-                            <span className="badge bg-secondary me-1">Express</span>
-                            <span className="badge bg-secondary me-1">MongoDB</span>
+                            <motion.span variants={itemVariants} className="badge bg-secondary me-1">Node.js</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-secondary me-1">Express</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-secondary me-1">MongoDB</motion.span>
                           </div>
                           <div className="mb-2">
-                            <span className="badge bg-dark me-1">Git</span>
-                            <span className="badge bg-dark me-1">Docker</span>
-                            <span className="badge bg-dark me-1">AWS</span>
+                            <motion.span variants={itemVariants} className="badge bg-dark me-1">Git</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-dark me-1">Docker</motion.span>
+                            <motion.span variants={itemVariants} className="badge bg-dark me-1">AWS</motion.span>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
 
                     <div className="mb-4">
                       <h4 className="text-warning mb-3">
@@ -120,6 +192,7 @@ const DescriptionPage = () => {
                       </div>
                     </div>
 
+                    {/* Анимация 6: Bounce для карточек опыта */}
                     <div className="mb-4">
                       <h4 className="text-info mb-3">
                         <i className="fas fa-briefcase me-2"></i>
@@ -127,7 +200,14 @@ const DescriptionPage = () => {
                       </h4>
                       <div className="row">
                         <div className="col-md-6">
-                          <div className="card border-success mb-3">
+                          <motion.div 
+                            className="card border-success mb-3"
+                            whileHover={{ 
+                              y: -10,
+                              boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+                            }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
                             <div className="card-body">
                               <div className="d-flex align-items-center mb-2">
                                 <div className="bg-success rounded-circle me-3" style={{width: '12px', height: '12px'}}></div>
@@ -136,10 +216,17 @@ const DescriptionPage = () => {
                               <p className="mb-1 text-muted">TechCorp Inc.</p>
                               <small className="text-muted">2022 - настоящее время</small>
                             </div>
-                          </div>
+                          </motion.div>
                         </div>
                         <div className="col-md-6">
-                          <div className="card border-primary mb-3">
+                          <motion.div 
+                            className="card border-primary mb-3"
+                            whileHover={{ 
+                              y: -10,
+                              boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+                            }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
                             <div className="card-body">
                               <div className="d-flex align-items-center mb-2">
                                 <div className="bg-primary rounded-circle me-3" style={{width: '12px', height: '12px'}}></div>
@@ -148,11 +235,12 @@ const DescriptionPage = () => {
                               <p className="mb-1 text-muted">WebStudio Ltd.</p>
                               <small className="text-muted">2020 - 2022</small>
                             </div>
-                          </div>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
 
+                    {/* Анимация 4: Rotate + Scale на hover для достижений */}
                     <div className="mb-4">
                       <h4 className="text-danger mb-3">
                         <i className="fas fa-trophy me-2"></i>
@@ -160,174 +248,124 @@ const DescriptionPage = () => {
                       </h4>
                       <div className="row">
                         <div className="col-md-4">
-                          <div className="text-center p-3 bg-light rounded achievement-card" 
-                               style={{
-                                 transition: 'transform 0.3s ease, background-color 0.3s ease',
-                                 cursor: 'pointer'
-                               }}
-                               onMouseEnter={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1.05)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}
-                               onMouseLeave={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}>
-                            <i className="fas fa-medal fa-2x text-warning mb-2" style={{
-                              animation: 'pulse 2s infinite'
-                            }}></i>
+                          <motion.div 
+                            className="text-center p-3 bg-light rounded achievement-card" 
+                            style={{ cursor: 'pointer' }}
+                            variants={achievementVariants}
+                            whileHover="hover"
+                          >
+                            <i className="fas fa-medal fa-2x text-warning mb-2"></i>
                             <h6>Лучший разработчик</h6>
                             <small className="text-muted">2023</small>
-                          </div>
+                          </motion.div>
                         </div>
                         <div className="col-md-4">
-                          <div className="text-center p-3 bg-light rounded achievement-card"
-                               style={{
-                                 transition: 'transform 0.3s ease, background-color 0.3s ease',
-                                 cursor: 'pointer'
-                               }}
-                               onMouseEnter={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1.05)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}
-                               onMouseLeave={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}>
-                            <i className="fas fa-certificate fa-2x text-success mb-2" style={{
-                              animation: 'bounce 1s infinite'
-                            }}></i>
+                          <motion.div 
+                            className="text-center p-3 bg-light rounded achievement-card"
+                            style={{ cursor: 'pointer' }}
+                            variants={achievementVariants}
+                            whileHover="hover"
+                          >
+                            <i className="fas fa-certificate fa-2x text-success mb-2"></i>
                             <h6>React Expert</h6>
                             <small className="text-muted">Certification</small>
-                          </div>
+                          </motion.div>
                         </div>
                         <div className="col-md-4">
-                          <div className="text-center p-3 bg-light rounded achievement-card"
-                               style={{
-                                 transition: 'transform 0.3s ease, background-color 0.3s ease',
-                                 cursor: 'pointer'
-                               }}
-                               onMouseEnter={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1.05)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}
-                               onMouseLeave={(e) => {
-                                 e.currentTarget.style.transform = 'scale(1)';
-                                 e.currentTarget.style.backgroundColor = '#f8f9fa';
-                               }}>
-                            <i className="fas fa-star fa-2x text-primary mb-2" style={{
-                              animation: 'rotate 3s linear infinite'
-                            }}></i>
+                          <motion.div 
+                            className="text-center p-3 bg-light rounded achievement-card"
+                            style={{ cursor: 'pointer' }}
+                            variants={achievementVariants}
+                            whileHover="hover"
+                          >
+                            <i className="fas fa-star fa-2x text-primary mb-2"></i>
                             <h6>5-звездочный рейтинг</h6>
                             <small className="text-muted">Upwork</small>
-                          </div>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
 
+                    {/* Анимация 5: Drag для хобби */}
                     <div className="mb-0">
                       <h4 className="text-secondary mb-3">
                         <i className="fas fa-heart me-2"></i>
-                        Хобби и интересы
+                        Хобби и интересы <small className="text-muted">(можно перетаскивать!)</small>
                       </h4>
                       <div className="d-flex flex-wrap gap-2">
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#007bff';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Фотография</span>
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#28a745';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Путешествия</span>
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#ffc107';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Спорт</span>
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#dc3545';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Чтение</span>
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#6f42c1';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Музыка</span>
-                        <span className="badge bg-light text-dark border" 
-                              style={{
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.transform = 'scale(1.1)';
-                                e.target.style.backgroundColor = '#17a2b8';
-                                e.target.style.color = 'white';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.backgroundColor = '#f8f9fa';
-                                e.target.style.color = '#212529';
-                              }}>Готовка</span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#007bff', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Фотография
+                        </motion.span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#28a745', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Путешествия
+                        </motion.span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#ffc107', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Спорт
+                        </motion.span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#dc3545', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Чтение
+                        </motion.span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#6f42c1', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Музыка
+                        </motion.span>
+                        <motion.span 
+                          className="badge bg-light text-dark border" 
+                          style={{ cursor: 'grab' }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.2}
+                          whileHover={{ scale: 1.1, backgroundColor: '#17a2b8', color: 'white' }}
+                          whileDrag={{ scale: 1.2, cursor: 'grabbing' }}
+                        >
+                          Готовка
+                        </motion.span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
